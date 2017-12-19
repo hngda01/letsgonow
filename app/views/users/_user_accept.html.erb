@@ -1,0 +1,20 @@
+<% @static_pages.each do |user| %>
+<li>
+  <% if user.picture? %>
+  <%= image_tag user.picture.url ,style:"width: 50px;height:50px;" %>
+  <% else %>
+  <img src="images/s2.jpg", height="50", width="50">
+
+  <% end %>
+  <%= link_to user.name, user,class: "page-newsfeed-06" %>
+  <% if current_user.admin? && !current_user?(user) %>
+  <br><br>
+  <%= link_to user, method: :delete,data: { confirm: "You sure?" } do%> 
+  	<i class="fa fa-trash">delete</i>
+  <% end %> | 
+  <%= link_to setadmin_path(:id => user.id) do %>
+  	<i class="fa fa-pencil">set admin</i>
+  <% end %>
+  <% end %>
+</li>
+<% end %>

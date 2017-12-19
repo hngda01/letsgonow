@@ -1,19 +1,25 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
-  before_action :correct_user,   only: :destroy
+  before_action :logged_in_user, only: [:create, :destroy, :show, :new]
+  before_action :correct_user,   only: [:destroy, :update, :edit]
 
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
       flash[:success] = "Micropost created!"
-      redirect_to root_url
+      redirect_to current_user
     else
       @feed_items = []
-      render 'static_pages/home'
+      render 'static_pages/index'
     end
   end
   def show
+    #delete notification
+    @ownNotifications= Notification.where("user_id = ? and micropost_id = ?",current_user.id,params[:id])
+    @ownNotifications.each do |noti|
+      noti.destroy
+    end
+    #end delete
     @user = User.find(current_user.id)
     @marked= SavePost.where("user_id = ? and micropost_id = ?",current_user.id,params[:id])
     @liked= Like.where("user_id= ? and micropost_id = ?",current_user.id,params[:id])
@@ -44,9 +50,10 @@ class MicropostsController < ApplicationController
   end
 
   def destroy
+    @user = User.find(current_user.id)
     @micropost.destroy
     flash[:success] = "Micropost deleted"
-    redirect_to request.referrer || root_url
+    redirect_to @user
   end
   def new
     @notifications= current_user.notifications

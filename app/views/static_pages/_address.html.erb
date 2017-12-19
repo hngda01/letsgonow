@@ -16,21 +16,21 @@
             <div class="row">
               <div class="col-md-4">
                 <%= link_to about_path(:id => @addresses[i].id),class:"thumbnail", remote:true do %>
-                <img alt="" src="images/s1.jpg">
+                <img alt="" src="images/<%= @addresses[i].picture %>">
                   <center><%= @addresses[i].name %> </center>
                 <% end %>
                  
               </div>          
               <div class="col-md-4">
                 <%= link_to about_path(:id => @addresses[i+1].id),class:"thumbnail", remote:true do %>
-                <img alt="" src="images/s1.jpg">
+                <img alt="" src="images/<%= @addresses[i+1].picture %>">
                   <center><%= @addresses[i+1].name %> </center>
                 <% end %>
                 
               </div>
               <div class="col-md-4">
                 <%= link_to about_path(:id => @addresses[i+2].id),class:"thumbnail", remote:true do %>
-                <img alt="" src="images/s1.jpg">
+                <img alt="" src="images/<%= @addresses[i+2].picture %>">
                   <center><%= @addresses[i+2].name %> </center>
                 <% end %>
                 

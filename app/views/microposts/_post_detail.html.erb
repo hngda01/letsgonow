@@ -7,13 +7,15 @@
           <table>
             <tr>
               <td style="padding-right: 20px">
-
-                <%= image_tag @micropost.user.picture.url ,class: "img-circle", height:"55", width:"55" if current_user.picture?%>
-
+              <% if @micropost.user.picture? %>
+                <%= image_tag @micropost.user.picture.url ,class: "img-circle", height:"55", width:"55" if @micropost.user.picture?%>
+              <% else %>
+                <img src="/uploads/s2.jpg" class= "img-circle", height="55", width="55">
+              <% end %>
               </td>
               <td>
                 <span class="page-newsfeed-06">
-                  <a href="" title=""><%= @micropost.user.name %></a>                  
+                  <a href="" title=""><%= link_to @micropost.user.name, @micropost.user %></a>                  
                 </span>
                 <br> 
                 <div style="color: #000;">
@@ -24,15 +26,22 @@
                     <%= @micropost.district.name %>
                   </a>
                   &nbsp;&nbsp;&nbsp;
+                  <% if current_user.id == @micropost.user_id %>
                   <%= link_to "Edit", edit_micropost_path(@micropost),class: "fa fa-pencil" %>
                   &nbsp;&nbsp;&nbsp;
-                  <a href="deletePost/{{$diary->id}}" class="fa fa-trash" >delete</a>&nbsp;&nbsp;&nbsp;
+                  <%= link_to @micropost, method: :delete,data: { confirm: "You sure?" } do %>                  
+                  <i class="fa fa-trash" >delete</i>
+                  <% end %>
+                  <% end %>
+                  &nbsp;&nbsp;&nbsp;
                   <!-- for form -->
                   <%= f.hidden_field :user_id, value: @user.id %>
                   <%= f.hidden_field :micropost_id, value: @micropost.id %>
+                  <% if current_user.id != @micropost.user.id %>
                   <span id="bookmark">
                     <%= render 'save_posts/bookmark', marked: @marked %>
                   </span>
+                  <% end %>
                   <% end %>
                 </div>
               </td>

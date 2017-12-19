@@ -12,9 +12,13 @@ class CommentsController < ApplicationController
         format.js # JavaScript response
       end
     else
-    #new comment    
+    #new comment 
+    #check to add notification
+    if current_user.id != params[:micropost_id]   
     @notification = @micropost.notifications.build(params.require(:comment).permit(:notification,:user_id,:micropost_id)) # strong parameters
     @notification.save
+    end
+    #end check
     @comments= Comment.where("micropost_id = ?",params[:micropost_id])
     @comment = @micropost.comments.build(comment_params) # strong parameters
     if @comment.save

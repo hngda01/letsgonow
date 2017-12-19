@@ -1,37 +1,44 @@
 <div class="col-sm-3">
     <div class="panel widget light-widget panel-bd-top">
         <div class="well">
-            <div class="text-center vd_info-parent"> 
-            <%= image_tag current_user.picture.url ,class: "avatar" if current_user.picture?%>
+        <div class="text-center vd_info-parent">                 
+                <% if @user.picture? %>
+                <%= image_tag @user.picture.url ,class: "avatar" if @user.picture?%>
+                <% else %>
+                <img src="/uploads/s2.jpg" class="avatar">
+                <% end %>
             </div>
             <div class="row">
             </div>
             <h2 class="font-semibold mgbt-xs-5"><%= @user.name %></h2>
             <div class="mgtp-20">
+                <center>
+                    <%= render 'users/follow_form' if logged_in? %><br>
+                    <section class="stats">
+                        <%= render 'shared/stats' %>
+                    </section>
+                    <br>
+                </center>
+                <% if @user.id == current_user.id %>
                 <table class="table table-striped table-hover" >
-                    <tbody >
-                        <!-- <tr>
-                            <td colspan="2">User Rating
-                            <i class="fa fa-star vd_yellow fa-fw"></i><i class="fa fa-star vd_yellow fa-fw"></i><i class="fa fa-star vd_yellow fa-fw"></i><i class="fa fa-star vd_yellow fa-fw"></i><i class="fa fa-star vd_yellow fa-fw"></i></td>
-                        </tr> -->
+                    <tbody >                        
+
                         <tr>
-                            <td>Member Since</td>
-                            <td> Jan 07, 2014 </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" align="center"><a href="#">Change profile picture</a> </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" align="center"><%= link_to "Edit information", edit_user_path(current_user) %> </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" align="center"><%= link_to "new post", new_micropost_path %> </td>
-                        </tr>
-                        
-                        
-                    </tbody>
-                </table>
+                            <td align="center">
+                                <i class="fa fa-pencil-square-o" style="color: #1866b1;"></i>
+                                <%= link_to "Edit profile", edit_user_path(current_user) %> </td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    <i class="fa fa-file" style="color: #1866b1;"></i>
+                                    <%= link_to "Write post..", new_micropost_path %> </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                        <% end %>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>

@@ -8,7 +8,25 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def help
+  def admin
+    if current_user.admin == false
+      redirect_to not_allow_path
+    end
+    @notifications= current_user.notifications
+    @waitingPost = Micropost.where("accept = ?", false)
+    #@waitingPost = Micropost.paginate(page: params[:page])
+  end
+  def not_allow
+    @notifications= current_user.notifications
+  end
+  def adminuser
+    if current_user.admin == false
+      redirect_to not_allow_path
+    end
+    @static_pages = User.paginate(page: params[:page])
+    @notifications= current_user.notifications
+    @waitingPost = Micropost.where("accept = ?", false)
+    #@waitingPost = Micropost.paginate(page: params[:page])
   end
 
   def about
@@ -24,15 +42,38 @@ class StaticPagesController < ApplicationController
     
   end
 
-  def contact
+  def deletep
+    @post= Micropost.find(params[:id])
+    @post.destroy
+    redirect_back(fallback_location: root_path)
   end
-  def test
+  def acceptp
+    @post= Micropost.find(params[:id])
+    @post.accept= true
+    @post.save
+    redirect_back(fallback_location: root_path)
+  end
+  def setadmin
+    @user= User.find(params[:id])
+    @user.admin= true
+    @user.save
+    redirect_back(fallback_location: root_path)
+  end
+  def searchp
+    redirect_to searchpeople_path(:id => params[:search])
+  end
+  def searchpeople
+    @notifications= current_user.notifications
+    wildcard_search = params[:id]
+    @recentPosts= Micropost.where("title like ? and accept = ?","%#{wildcard_search}%",true).paginate(page: params[:page],per_page: 5)
   end
   def index
+    if logged_in?
     @notifications= current_user.notifications
+    end
     @posts= Micropost.joins(:likes).group('microposts.id').order('count(likes.id) desc').limit(5)
     @addresses= District.all
-    @recentPosts= Micropost.order("updated_at DESC").limit(3)
+    @recentPosts= Micropost.where("accept = ?", true).order("updated_at DESC").paginate(page: params[:page], per_page: 5)    
     @topUsers= User.joins(:microposts).group('users.id').order('count(microposts.id) desc').limit(10)
   end
 end

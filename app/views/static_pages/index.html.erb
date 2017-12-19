@@ -13,9 +13,6 @@
             <div class="col-md-9 fix-padding">
                 <div class="row">
                     <div class="col-md-12">
-                                <!--
-								most view
-                            -->
                             <%= render 'most_view' %>
                             <%= render 'address' %>
                             
@@ -29,14 +26,15 @@
                 <div class="col-md-3">
                     <br><br>
                     <div class="col-md-12 fix-padding">
-                        <div class="input-group">
-                            
+                    <%= form_for index_path do %>
+                        <div class="input-group">                            
                             <input type="hidden" name="search_param" value="all" id="search_param">         
-                            <input type="text" class="form-control" name="x" placeholder="Search term...">
+                            <input type="text" class="form-control" name="search" placeholder="Search term...">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                            </span>
+                                <button class="btn btn-default" type="submit" style="height: 40px;"><span class="glyphicon glyphicon-search"></span></button>
+                            </span>                            
                         </div>
+                    <% end %>
                     </div>
                     <div class="col-md-12 facebook fix-padding">
                         <h5><b class="bottom_b">FACEBOOK</b></h5>

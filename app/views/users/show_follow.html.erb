@@ -1,30 +1,67 @@
-<% provide(:title, @title) %>
+
+
+
+<% provide(:title, 'Edit user') %>
+<% provide(:button_text, 'Save changes') %>
+<!-- <h1>Update your profile</h1>
 <div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
+  <div class="col-md-6 col-md-offset-3">
+    <%= render 'form' %>
+    <div class="gravatar_edit">
       <%= gravatar_for @user %>
-      <h1><%= @user.name %></h1>
-      <span><%= link_to "view my profile", @user %></span>
-      <span><b>Microposts:</b> <%= @user.microposts.count %></span>
-    </section>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-      <% if @users.any? %>
-        <div class="user_avatars">
-          <% @users.each do |user| %>
-            <%= link_to gravatar_for(user, size: 30), user %>
-          <% end %>
+      <a href="http://gravatar.com/emails" target="_blank">Change</a>
+    </div>
+  </div>
+</div> -->
+
+<body style="background: url(images/background/8.jpg)">
+  <div class="container-fuild">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-3 header-inner">
+            <a href="#"><img src="images/logo.png" alt=""></a>
+          </div>
         </div>
-      <% end %>
-    </section>
-  </aside>
-  <div class="col-md-8">
-    <h3><%= @title %></h3>
-    <% if @users.any? %>
-      <ul class="users follow">
-        <%= render @users %>
-      </ul>
-      <%= will_paginate %>
-    <% end %>
+
+        <div class="col-md-12">
+          <div class="row profile">
+            <%= render 'shared/avatar' %>
+            <div class="col-sm-9">
+              <div class="tabs widget">
+                <div class="tab-content">
+
+
+                  <div class="col-md-8">
+                    <h3><%= @title %></h3>
+                    <% if @users.any? %>
+                    <ul class="users follow">
+                      <% @users.each do |user| %>
+                      <li>
+                        <% if user.picture? %>
+                        <%= image_tag user.picture.url ,style:"width: 50px;height:50px;" %>
+                        <% else %>
+                        <%= gravatar_for user, size: 50 %>
+                        <% end %>
+                        <%= link_to user.name, user,class: "page-newsfeed-06" %>
+
+                      </li>
+                      <% end %>
+                    </ul>
+                    <%= will_paginate @users %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
 </div>
+</body> 
+

@@ -7,8 +7,7 @@
   </div>
   <div class="col-md-8 recent_post">
     <b><a href="" title=""><%= link_to recentPost.title, recentPost %></a></b>
-    <p class="title-img"> <i class="fa fa-calendar-times-o" aria-hidden="true"></i> 
-    <%= link_to recentPost.user.name, recentPost.user %></a>
+    <p class="title-img"> <i class="fa fa-calendar-times-o" aria-hidden="true"></i> </a>
     <%= " "%>
     <%= time_ago_in_words(recentPost.created_at) %> ago.</p>
     <p>

@@ -3,7 +3,7 @@
 
 <tr>
           <td style="padding-right: 20px" width="100">
-            <%= image_tag t.user.picture.url ,class: "img-circle", height:"55", width:"55" if current_user.picture?%>
+            <%= image_tag t.user.picture.url ,class: "img-circle", height:"55", width:"55" if t.user.picture?%>
           </td>
           <td align="left">
             <span class="page-newsfeed-06">

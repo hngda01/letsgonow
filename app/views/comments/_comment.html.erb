@@ -6,7 +6,7 @@
       
         <tr>
           <td style="padding-right: 20px" width="100">
-            <%= image_tag comment.user.picture.url ,class: "img-circle", height:"55", width:"55" if current_user.picture?%>
+            <%= image_tag comment.user.picture.url ,class: "img-circle", height:"55", width:"55" if comment.user.picture?%>
           </td>
           <td align="left">
             <span class="page-newsfeed-06">
@@ -16,7 +16,9 @@
               <br>
               <%= time_ago_in_words(comment.created_at) %> ago.
               &nbsp;&nbsp;
+              <% if current_user.id == comment.user_id %>
               <button name="comment_id" value="<%= comment.id %>" type="submit" class="fa fa-trash">&nbsp;&nbsp;delete</button>
+              <% end %>
             </span>               
           </td>
         </tr>

@@ -1,6 +1,6 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "sample app", root_path, id: "logo" %>
+    <%= link_to "VIET-TRAVEL", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", index_path %></li>
@@ -9,9 +9,9 @@
           <div class="dropdown navbar-component" title="Notification">
             <div class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               <span class="fa fa-bell"></span>
-
+              <% if @notifications.count != 0 %>
               <span class="button__badge"><%= @notifications.count %></span>
-
+              <% end %>
 
             </div>
             <ul class="dropdown-menu noti-table" aria-labelledby="noti">
@@ -38,6 +38,9 @@
           <ul class="dropdown-menu">
             <li><%= link_to "Profile", current_user %></li>
             <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+            <% if current_user.admin == true %>
+              <li><%= link_to "Admin page", admin_path %></li>
+            <% end %>
             <li class="divider"></li>
             <li>
               <%= link_to "Log out", logout_path, method: :delete %>

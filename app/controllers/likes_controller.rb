@@ -3,8 +3,12 @@ class LikesController < ApplicationController
     @micropost = Micropost.find(params[:micropost_id])
     @liked= Like.where("user_id= ? and micropost_id = ?",params["like"]["user_id"],params[:micropost_id])
     if @liked.count == 0
+    #check to add noti
+    if current_user.id != @micropost.user_id
     @notification = @micropost.notifications.build(like_params) # strong parameters
     @notification.save
+    end
+    #end check
     @likes= @micropost.likes
     @like = @micropost.likes.build(params.require(:like).permit(:user_id,:micropost_id)) # strong parameters
     if @like.save

@@ -1,0 +1,9 @@
+Nguyen Dang Hai:
++ comment : create, Destroy
++ like : Like, unlike
++ Save Post: save, remove
++ notification: create, destroy
++ search by post's title
++ view posts of address
++ admin - accept posts
++ admin - set admin, delete users

@@ -1,25 +1,27 @@
 Rails.application.routes.draw do
   get 'sessions/new'
-
-get '/home', to: 'static_pages#home'
+get '/admin', to: 'static_pages#admin'
+get 'not_allow', to: 'static_pages#not_allow'
+get '/adminuser', to: 'static_pages#adminuser'
 get '/index', to: 'static_pages#index'
-get '/address/:id', to: 'static_pages#address', as: 'address'
-get '/test', to: 'static_pages#test'
-get '/help', to: 'static_pages#help'
 get "/about" => 'static_pages#about', as: 'about'
-get '/contact', to: 'static_pages#contact'
+get "/spp" => 'static_pages#spp', as: 'spp'
+get "/deletep" => 'static_pages#deletep', as: 'deletep'
+get "/setadmin" => 'static_pages#setadmin', as: 'setadmin'
+get "/acceptp" => 'static_pages#acceptp', as: 'acceptp'
+post "/index" => 'static_pages#searchp'
+get "/searchpeople" => 'static_pages#searchpeople', as: 'searchpeople'
 get '/signup', to: 'users#new'
 post '/signup',  to: 'users#create'
 get '/login', to: 'sessions#new'
 post '/login', to: 'sessions#create'
 delete '/logout', to: 'sessions#destroy'
-root 'static_pages#home'
+root 'static_pages#index'
   resources :users do
     member do
       get :following, :followers
     end
   end
-
 resources :microposts do
     resources :comments, except: [:show, :edit]
     resources :likes

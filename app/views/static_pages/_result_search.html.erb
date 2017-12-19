@@ -1,0 +1,22 @@
+<center><h5><b class="bottom_b">Results for "<%= params[:id]%>"</b></h5></center><br>
+
+<% @recentPosts.each do |recentPost| %>
+<div class="col-md-12 list_recent_post">
+  <div class="col-md-4 recent_img">
+  <% if recentPost.picture? %>
+  <%= image_tag recentPost.picture.url %>
+  <% else %>
+    <img src="images/s1.jpg" alt="">
+  <% end %>
+  </div>
+  <div class="col-md-8 recent_post">
+    <b><a href="" title=""><%= link_to recentPost.title, recentPost %></a></b>
+    <p class="title-img"> <i class="fa fa-calendar-times-o" aria-hidden="true"></i> 
+    <%= time_ago_in_words(recentPost.updated_at)  %></p>
+    <p><%= recentPost.content[0..200] %>...
+    </p>
+    <button type="button" class="btn btn-success">Read more</button>
+  </div>
+</div>
+<% end %>
+<%= will_paginate @recentPosts %>
