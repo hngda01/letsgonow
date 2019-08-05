@@ -25,9 +25,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "Welcome to Viet Travel!"
       redirect_to @user
     else
+      flash[:danger] = "please fill in all input fields!"
       render 'new'
     end
   end
@@ -43,7 +44,8 @@ class UsersController < ApplicationController
       flash[:success] = "Profile updated"
       redirect_to @user
     else
-      render 'edit'
+      flash[:danger] = "please fill in all input fields!"
+      redirect_to @user
     end
   end
   def destroy
@@ -69,7 +71,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password,:password_confirmation,:picture)
+      params.require(:user).permit(:name, :email, :password,:password_confirmation,:picture,:address,:hobby,:phone_number)
     end
 
     # Before filters

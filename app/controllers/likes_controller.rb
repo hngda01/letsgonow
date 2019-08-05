@@ -6,6 +6,7 @@ class LikesController < ApplicationController
     #check to add noti
     if current_user.id != @micropost.user_id
     @notification = @micropost.notifications.build(like_params) # strong parameters
+    @notification.user_id = @micropost.user_id
     @notification.save
     end
     #end check

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171218103922) do
+ActiveRecord::Schema.define(version: 20190805081023) do
 
   create_table "comments", force: :cascade do |t|
     t.string "comment"
@@ -28,6 +28,22 @@ ActiveRecord::Schema.define(version: 20171218103922) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture"
+  end
+
+  create_table "job_prs", force: :cascade do |t|
+    t.integer "micropost_id"
+    t.integer "user_id"
+    t.string "pr"
+  end
+
+  create_table "job_skills", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "micropost_id"
+  end
+
+  create_table "job_users", force: :cascade do |t|
+    t.integer "micropost_id"
+    t.integer "user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -49,6 +65,9 @@ ActiveRecord::Schema.define(version: 20171218103922) do
     t.integer "district_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "money"
+    t.date "start_time"
+    t.date "end_time"
     t.index ["district_id"], name: "index_microposts_on_district_id"
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_microposts_on_user_id"
@@ -75,6 +94,10 @@ ActiveRecord::Schema.define(version: 20171218103922) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "save_posts", force: :cascade do |t|
     t.integer "user_id"
     t.integer "micropost_id"
@@ -83,6 +106,25 @@ ActiveRecord::Schema.define(version: 20171218103922) do
     t.index ["micropost_id"], name: "index_save_posts_on_micropost_id"
     t.index ["user_id", "created_at"], name: "index_save_posts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_save_posts_on_user_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sliders", force: :cascade do |t|
+    t.string "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_skills", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "skill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

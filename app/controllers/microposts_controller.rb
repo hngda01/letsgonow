@@ -10,7 +10,8 @@ class MicropostsController < ApplicationController
       redirect_to current_user
     else
       @feed_items = []
-      render 'static_pages/index'
+      flash[:danger] = "failed ! input field can't be blank"
+      redirect_to current_user
     end
   end
   def show
@@ -38,7 +39,8 @@ class MicropostsController < ApplicationController
       flash[:success] = "Post updated"
       redirect_to @micropost
     else
-      render 'edit'
+      flash[:danger] = "failed ! input field can't be blank"
+      redirect_to @micropost
     end
   end
 

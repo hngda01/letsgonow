@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   get 'sessions/new'
 get '/admin', to: 'static_pages#admin'
+get '/slider', to: 'static_pages#slider'
 get 'not_allow', to: 'static_pages#not_allow'
-get '/adminuser', to: 'static_pages#adminuser'
+get '/admin/user', to: 'static_pages#adminuser', as: "adminuser"
 get '/index', to: 'static_pages#index'
 get "/about" => 'static_pages#about', as: 'about'
 get "/spp" => 'static_pages#spp', as: 'spp'

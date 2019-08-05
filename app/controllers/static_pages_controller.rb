@@ -16,6 +16,12 @@ class StaticPagesController < ApplicationController
     @waitingPost = Micropost.where("accept = ?", false)
     #@waitingPost = Micropost.paginate(page: params[:page])
   end
+  def slider
+    @notifications= current_user.notifications
+    if logged_in?
+      @sliders  = Slider.all
+    end
+  end
   def not_allow
     @notifications= current_user.notifications
   end
@@ -71,7 +77,7 @@ class StaticPagesController < ApplicationController
     if logged_in?
     @notifications= current_user.notifications
     end
-    @posts= Micropost.joins(:likes).group('microposts.id').order('count(likes.id) desc').limit(5)
+    @posts= Like.group('micropost_id').order('count(id) desc').limit(5)
     @addresses= District.all
     @recentPosts= Micropost.where("accept = ?", true).order("updated_at DESC").paginate(page: params[:page], per_page: 5)    
     @topUsers= User.joins(:microposts).group('users.id').order('count(microposts.id) desc').limit(10)

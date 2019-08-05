@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
     #check to add notification
     if current_user.id != params[:micropost_id]   
     @notification = @micropost.notifications.build(params.require(:comment).permit(:notification,:user_id,:micropost_id)) # strong parameters
+    @notification.user_id= @micropost.user_id
     @notification.save
     end
     #end check
