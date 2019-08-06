@@ -13,6 +13,8 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   has_many :microposts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :user_skills, dependent: :destroy
+  accepts_nested_attributes_for :user_skills
   has_many :notifications, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :save_posts, dependent: :destroy

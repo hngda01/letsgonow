@@ -36,6 +36,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @notifications= @user.notifications
+    @skills = Skill.all
   end
 
   def update
@@ -71,7 +72,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password,:password_confirmation,:picture,:address,:hobby,:phone_number)
+      params.require(:user).permit(:name, :email, :password,:password_confirmation,:picture,:address,:hobby,:phone_number, user_skills_attributes: [:id, :skill_id, :years])
     end
 
     # Before filters
