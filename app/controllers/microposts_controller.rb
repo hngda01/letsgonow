@@ -25,10 +25,12 @@ class MicropostsController < ApplicationController
     @marked= SavePost.where("user_id = ? and micropost_id = ?",current_user.id,params[:id])
     @liked= Like.where("user_id= ? and micropost_id = ?",current_user.id,params[:id])
     @micropost = Micropost.find(params[:id])
+    @skills = @micropost.job_skills
     @notifications= @user.notifications
     @comments = @micropost.comments
     @likes= @micropost.likes
     @new_comment = @micropost.comments.new
+    @new_pr = @micropost.job_prs.new
     @new_like = @micropost.likes.new
     @new_save_post = @micropost.save_posts.new
   end
@@ -49,6 +51,7 @@ class MicropostsController < ApplicationController
     @notifications= @user.notifications
     @micropost = Micropost.find(params[:id])
     @districts = District.all
+    @skills = Skill.all
   end
 
   def destroy
@@ -58,6 +61,7 @@ class MicropostsController < ApplicationController
     redirect_to @user
   end
   def new
+    @skills = Skill.all
     @notifications= current_user.notifications
     if logged_in?
       @micropost  = current_user.microposts.build
@@ -71,7 +75,7 @@ class MicropostsController < ApplicationController
   private
 
     def micropost_params
-      params.require(:micropost).permit(:content, :picture, :title, :district_id)
+      params.require(:micropost).permit(:content, :picture,:start_time, :end_time,:money, :title, :district_id, job_skills_attributes: [:skill])
     end
 
     def correct_user

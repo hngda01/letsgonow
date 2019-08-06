@@ -48,27 +48,63 @@
             </tr>
           </table>
         </div>
-        <img src="<%= @micropost.picture.url %>" alt="Paris" width="100%" height="300">
-        <center><h4 class="page-newsfeed-06"> <%= @micropost.title %></h4></center> 
+        <hr />
+        <h4 class="page-newsfeed-06"> <%= @micropost.title %></h4>
         <p><%= @micropost.content %></p> 
-        <hr /> 
+         
         <!-- form like -->
         <%= form_for [@micropost, @new_like], remote: true do |f| %>
         <% result= "#{@user.name} liked your post" %>
         <%= f.hidden_field :notification, value: result %>
         <%= f.hidden_field :user_id, value: @user.id %>
         <%= f.hidden_field :micropost_id, value: @micropost.id %>
-        <span id="like">
-          <%= render 'likes/button_like', liked: @liked %>
-        </span>
-        <span id="all-like">
-          <%= render 'likes/all_like', likes: @likes %>
-        </span>  
+         
         <% end %>
+        <hr>
+        
+        <h3><a href="" title="">More detail</a></h3><br>
+        <table>
+          <tr>
+            <td width="70%"><b>開始時間</b></td>
+            <td><%= @micropost.start_time %></td>
+          </tr>
+          <tr>
+            <td width="70%"><b>終了時間</b></td>
+            <td><%= @micropost.end_time %></td>
+          </tr>
+          <tr>
+            <td width="70%"><b>報酬</b></td>
+            <td><%= @micropost.money %></td>
+          </tr>
+          <tr>
+            <td width="70%"><b>場所</b></td>
+            <td><%= @micropost.district.name %></td>
+          </tr>
+          <tr>
+            <td > <b>必要なスキル</b> </td>
+          <tr>
+          <% @skills.each do |skill| %>
+            <tr>
+              <td width="70%"><b>スキル名</b></td>
+              <td><%= skill.skill %></td>
+            </tr>
+          <% end %>
+        </table>
         
         <br>
-        <div style="background-color: #f6f7f1">  
+        <!--  khu vuc comment -->
+        
+        <% if @micropost.check_match(@micropost) %>
+
+          <div style="background-color: #f6f7f1; display:inline; ">  
+        <% else %>
+          <div style="background-color: #f6f7f1; display:none; ">  
+        <% end %>
+
           <!-- comment list -->
+          <br>
+          <h3> 相談スペース</h3>
+          <br>
           <%= form_for [@micropost, @new_comment], remote: true do |f| %>
           <%= f.hidden_field :user_id, value: @user.id %>
           <%= f.hidden_field :micropost_id, value: @micropost.id %>
@@ -83,7 +119,31 @@
           </div> <br><br><br> 
         </div>
 
+        <!-- ket thuc khu vuc comment -->
 
+        <!--  khu vuc PR -->
+        <hr>
+          <% if @micropost.check_match(@micropost) or current_user.role == "company" %>
+            <div style="background-color: #f6f7f1; display:none; ">  
+          <% else %>
+            <div style="background-color: #f6f7f1; display:inline; ">  
+          <% end %> 
+          <!-- comment list -->
+          <br>
+          <h3> 自己PR</h3>
+          <br>
+          <%= form_for [@micropost, @new_pr] do |f| %>
+          <%= f.hidden_field :user_id, value: @user.id %>
+          <%= f.hidden_field :micropost_id, value: @micropost.id %>
+          <div id="comment-form">
+          <%= f.text_area :pr, class: 'form-control', placeholder: "自己PRを入力してください", size: "24x6" %>
+        </div>
+      
+      <button type="submit" class="btn btn-primary">Submit</button>
+          <% end %>
+          </div>  
+         
+        <!-- ket thuc khu vuc PR -->
 
       </div>
 

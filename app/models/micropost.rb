@@ -12,9 +12,19 @@ class Micropost < ApplicationRecord
   before_save :fix_title
 
   has_many :comments,  dependent: :destroy
+  has_many :job_prs,  dependent: :destroy
   has_many :likes,  dependent: :destroy
   has_many :save_posts,  dependent: :destroy
   has_many :notifications,  dependent: :destroy
+  has_many :job_skills,  dependent: :destroy
+  accepts_nested_attributes_for :job_skills
+
+  def check_match(micropost)
+    return true if JobUser.where(micropost_id: micropost.id).first
+    return false
+
+  end
+
   private
 
     # Validates the size of an uploaded picture.

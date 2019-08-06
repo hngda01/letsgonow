@@ -1,38 +1,61 @@
 
 <div id="edit-user" class="tab-pane active">
-    <div class="col-md-9 personal-info">
-       
-              <div class=" well" style="margin-left: 20px; margin-right: 20px">
-                <%= form_for(@micropost) do |f| %>
-                <div id="clock">
-                    <img id ='image1' src="<%= @micropost.picture.url %>"  width="100%" height="300">
-                </div>
-                <div class="form-group">
-                    <label for="telephone">Image :</label>
-                    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-                </div>
-                <div class="form-group">
-                    <%= f.text_field :title, class: 'form-control',placeholder: "Title" %>
-                </div>
-                <div class="form-group">  
+<div class="col-md-9 personal-info">
+   
+          <div class=" well" style="margin-left: 20px; margin-right: 20px">
+          <%= nested_form_for(@micropost) do |f| %>
+            
+            
+            <div class="form-group">
+                <%= f.text_field :title, class: 'form-control',placeholder: "Title" %>
+            </div>
+            <div class="form-group">  
+            
+            
+                    
+
+
+</div>
+
+
+<%= f.text_area :content, class: 'form-control', placeholder: "Compose new post...", size: "24x6" %>
+<%= f.select :district_id, @districts.map{ |c| [c.name, c.id] },
+            {include_blank: t(".choose_address")},
+            {class: "form-control"} %>
+<div class="form-group">
+<%= f.number_field :money, class: 'form-control',placeholder: "報酬（円）" %>
+</div>
+<div class="form-group">
+<%= f.date_field :start_time, class: 'form-control' %>
+<%= f.date_field :end_time, class: 'form-control' %>
+</div>
+<div class="form-group" id="f1">
+            <%= f.fields_for :job_skills do |skill_form| %>
+                               
+              <div class="col-lg-8">
+              
+                  <%= skill_form.text_field :skill,placeholder:"スキル", list:"browsers" %>
+                  <datalist id="browsers">
+                      <% @skills.each do |skill| %> 
+                        <option value="<%= skill.name %>">
+                      <% end %>
+                  </datalist>
+                  
+                  <br>
+                  <%= skill_form.link_to_remove "削除" %>
+                  <br>
+              </div>              
+            <% end %>
+            <%= f.link_to_add "スキルを追加", :job_skills %>
                 
-                <%= f.select :district_id, @districts.map{ |c| [c.name, c.id] },
-                {include_blank: t(".choose_address")},
-                {class: "form-control"} %>
-                        
+                
+</div>
+<br>
+<div class="form-group">
+                <label for="telephone">Image :</label>
+                <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+</div>
 
-
-    </div>
-    <input list="browsers" name="browser" value="" id="skill1">
-  <datalist id="browsers">
-    <option value="Internet Explorer">
-    <option value="Firefox">
-    <option value="Chrome">
-    <option value="Opera">
-    <option value="Safari">
-  </datalist>
-    
-<%= f.text_area :content, placeholder: "Compose new post...", size: "24x6" %>
 <button type="submit" class="btn btn-primary">Submit</button>
 
 <% end %>
@@ -40,21 +63,7 @@
 
 
 
-<script>
-  $(document).ready(function () {
-    $('#image1').attr('src');
-    console.log($('#image1').attr('src'));
-    $('input[name="micropost[picture]"]').on('change',function () {
-      if (this.files && this.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-          $('#image1').attr('src', e.target.result);
-      }
-      reader.readAsDataURL(this.files[0]);
-  }
-})
-})
-</script>
+
 
 
 </div>

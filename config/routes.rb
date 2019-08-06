@@ -25,6 +25,7 @@ root 'static_pages#index'
   end
 resources :microposts do
     resources :comments, except: [:show, :edit]
+    resources :job_prs, except: [:show, :edit]
     resources :likes
     resources :save_posts
     

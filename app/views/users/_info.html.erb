@@ -25,28 +25,44 @@
                     </div>
                     <div class="col-sm-12 padding-user">
                         <div class="row mgbt-xs-0">
-                            <label class="col-xs-5 control-label">Hobby:</label>
+                            <label class="col-xs-5 control-label">年齢:</label>
                             <div class="col-xs-7 controls"><%= @user.hobby %></div>
                         </div>
                     </div>
                     
                     <div class="col-sm-12 padding-user">
                         <div class="row mgbt-xs-0">
-                            <label class="col-xs-5 control-label">Phone number:</label>
+                            <label class="col-xs-5 control-label">学校名:</label>
                             <div class="col-xs-7 controls"><%= @user.phone_number %></div>
                         </div>
                     </div>
+                    <div class="col-sm-12 padding-user">
+                    <div class="row mgbt-xs-0">
+                        <label class="col-xs-5 control-label">スキル:</label>
+                        <div class="col-xs-7 controls">
+                        <table>
+                        <% @user.user_skills.each do |skill| %>
+                            <tr>
+                                <td width="70%">
+                                    <%= skill.skill %>
+                                </td>
+                                <td>
+                                    : <%= skill.years %>年
+                                </td>
+                            </tr>
+                        <% end %>
+                        </table>
+                        </div>
+                        </div>
+                        
+                            
+                        
+                    
+                </div>
                 </div>
             </div>
 
-            <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="icon-user mgr-10 profile-icon"></i> 
-            スキル</h3>
-            <div class="row">
-                <div class="col-md-12 about2">
-                    
-                    
-                </div>
-            </div>
+           
         </div>
         
     </div>
