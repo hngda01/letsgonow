@@ -1,14 +1,14 @@
 /* danh cho trang test */
 /* ================================ */
 /* carousel */
-.media-carousel 
+.media-carousel
 {
   margin-bottom: 0;
   padding: 0 40px 30px 1px;
   margin-top: 30px;
 }
 /* Previous button  */
-.media-carousel .carousel-control.left 
+.media-carousel .carousel-control.left
 {
   left: -22px;
   background-image: none;
@@ -20,7 +20,7 @@
   margin-top: 70px
 }
 /* Next button  */
-.media-carousel .carousel-control.right 
+.media-carousel .carousel-control.right
 {
   right: 17px !important;
   background-image: none;
@@ -32,7 +32,7 @@
   margin-top: 70px
 }
 /* Changes the position of the indicators */
-.media-carousel .carousel-indicators 
+.media-carousel .carousel-indicators
 {
   right: 50%;
   top: auto;
@@ -40,11 +40,11 @@
   margin-right: -19px;
 }
 /* Changes the colour of the indicators */
-.media-carousel .carousel-indicators li 
+.media-carousel .carousel-indicators li
 {
   background: #c0c0c0;
 }
-.media-carousel .carousel-indicators .active 
+.media-carousel .carousel-indicators .active
 {
   background: #333333;
 }
@@ -63,7 +63,7 @@
 }
 
 .checkbox-inline input[type=checkbox] {
-    
+
     margin-left: 20px;
 }
 .nav2 {
@@ -75,7 +75,7 @@
 }
 
 .nav3>li>a {
-    color: #fff !important; 
+    color: #fff !important;
 }
 
 .nav3>li>a:hover {
@@ -97,8 +97,8 @@
 
 .thumbs-fix {
     padding: 0px;
-    background-color: #fff; 
-    border-radius: 6px; 
+    background-color: #fff;
+    border-radius: 6px;
 }
 
 .title-img {
@@ -124,12 +124,12 @@
 
 .img_slider >img {
     width: 250px;
-    position: relative; 
+    position: relative;
     height: 250px;
 }
 .img_slider >div {
-    position: absolute; 
-    top: 180px; 
+    position: absolute;
+    top: 180px;
 }
 
 .img_slider >div >h5>a,.img_slider >div>p {
@@ -259,7 +259,7 @@ h1.page-header {
   padding-left: 0;
 }
 
-.main-container { 
+.main-container {
   background: #FFF;
   padding-top: 15px;
   margin-top: -20px;
@@ -267,7 +267,7 @@ h1.page-header {
 
 .footer {
   width: 100%;
-}  
+}
 
 :focus {
   outline: none;

@@ -6,6 +6,9 @@ get 'not_allow', to: 'static_pages#not_allow'
 get '/admin/user', to: 'static_pages#adminuser', as: "adminuser"
 get '/index', to: 'static_pages#index'
 get "/about" => 'static_pages#about', as: 'about'
+get "/prs" => 'static_pages#prs', as: 'prs'
+get "/accept_student" => 'static_pages#accept_student', as: 'accept_student'
+get "/cancel_student" => 'static_pages#cancel', as: 'cancel_student'
 get "/spp" => 'static_pages#spp', as: 'spp'
 get "/deletep" => 'static_pages#deletep', as: 'deletep'
 get "/setadmin" => 'static_pages#setadmin', as: 'setadmin'
@@ -28,7 +31,7 @@ resources :microposts do
     resources :job_prs, except: [:show, :edit]
     resources :likes
     resources :save_posts
-    
+
   end
 resources :relationships,       only: [:create, :destroy]
 

@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="w3-container">
+  <h2>Border Around Table</h2>
+  <p>The w3-border class adds a border around the table.</p>
+
+  <table class="w3-table w3-striped w3-border">
+    <tr>
+      <th width="300px">Student name</th>
+      <th>PR</th>
+      <th width="100px">Accept</th>
+      <th width="100px">Cancel</th>
+    </tr>
+    <tr>
+      <td>Jill</td>
+      <td>Smith</td>
+      <td><%= link_to "Accept", accept_student_path(micropost_id: 65, user_id: 2) %></td>
+      <td>Cancel</td>
+    </tr>
+
+  </table>
+</div>

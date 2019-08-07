@@ -9,11 +9,12 @@
           <div class="dropdown navbar-component" title="Notification">
             <div class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               <span class="fa fa-bell"></span>
-              <% if @notifications.count != 0 %>
+              <% if @notifications != nil %>
               <span class="button__badge"><%= @notifications.count %></span>
               <% end %>
 
             </div>
+            <% if @notifications != nil %>
             <ul class="dropdown-menu noti-table" aria-labelledby="noti">
               <% @notifications.each do |notification| %>
               <li class="noti-comp">
@@ -26,6 +27,7 @@
               </li>
               <% end %>
             </ul>
+            <% end %>
           </div>
           <!-- end comment -->
         </li>
@@ -55,62 +57,3 @@
   </div>
 </header>
 
-<!--<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a href="#"><img src="./logo/logo.jpg" height="50"></a>
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <form class="navbar-form navbar-left" action="{{ route('search.results') }}" >
-        <div class="form-group input-group search-box">
-          <input type="text" class="form-control" placeholder="Search..." name="query">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="submit">
-              <span class="fa fa-search"></span>
-            </button>
-          </span>
-        </div>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <% if logged_in? %>
-        <li>
-        </li>
-        <li>
-
-          <div class="dropdown navbar-component" title="Notification">
-            <div class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <span class="fa fa-bell"></span>
-                <span class="button__badge"><%= @notifications.count %></span>
-            </div>
-            <ul class="dropdown-menu noti-table" aria-labelledby="noti">
-            <% @notifications.each do |notification| %>
-              <li class="noti-comp">
-
-                  <img class="img-responsive img-circle noti-pic" src="img/avatar/ava1.jpg">
-                <%= link_to notification.notification, notification.micropost %>
-
-              </li>
-            <% end %>
-            </ul>
-          </div>
-          <% end %>
-        </li>
-        <li>
-          <div class="dropdown navbar-component">
-            <div class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <span class="fa fa-user"></span> My Account
-            </div>
-            <ul class="dropdown-menu" aria-labelledby="acc">
-              <li><a href="#"><span class="fa fa-cog"></span> Settings</a></li>
-              <li><a href="#"><span class="fa fa-sign-out"></span> Log Out</a></li>
-            </ul>
-          </div>
-        </li>
-      </ul>
-  </div>
-</nav> -->

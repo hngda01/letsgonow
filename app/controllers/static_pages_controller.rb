@@ -45,7 +45,7 @@ class StaticPagesController < ApplicationController
         end
         format.js
     end
-    
+
   end
 
   def deletep
@@ -53,6 +53,14 @@ class StaticPagesController < ApplicationController
     @post.destroy
     redirect_back(fallback_location: root_path)
   end
+
+  def accept_student
+    @pr = JobPr.where(micropost_id: params[:micropost_id], user_id: params[:user_id])
+    @pr.destroy
+    JobUser.create(micropost_id: params[:micropost_id], user_id: params[:user_id])
+    redirect_back(fallback_location: prs_path)
+  end
+
   def acceptp
     @post= Micropost.find(params[:id])
     @post.accept= true
@@ -79,7 +87,7 @@ class StaticPagesController < ApplicationController
     end
     @posts= Like.group('micropost_id').order('count(id) desc').limit(5)
     @addresses= District.all
-    @recentPosts= Micropost.where("accept = ?", true).order("updated_at DESC").paginate(page: params[:page], per_page: 5)    
+    @recentPosts= Micropost.where("accept = ?", true).order("updated_at DESC").paginate(page: params[:page], per_page: 5)
     @topUsers= User.joins(:microposts).group('users.id').order('count(microposts.id) desc').limit(10)
   end
 end
