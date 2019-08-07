@@ -1,17 +1,17 @@
-<div class="span7">   
+<div class="span7">
 <div class="widget stacked widget-table action-table">
-    				
+    		<%= will_paginate @waitingPost%>
 				<div class="widget-header">
 					<i class="icon-th-list"></i>
-					
-				</div> 				
-				<div class="widget-content">					
+
+				</div>
+				<div class="widget-content">
 					<table class="table table-striped table-bordered">
 						<thead>
 							<tr>
 								<th>User</th>
 								<th>Title</th>
-								<th class="td-actions"></th>
+								<th class="td-actions">Delete</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -20,18 +20,18 @@
 								<td><%= link_to post.user.name,post.user %></td>
 								<td><%= link_to post.title,post %></td>
 								<td class="td-actions">
-									<%= link_to "",acceptp_path(:id => post.id),class:"fa fa-check btn btn-primary" %>
-									
-									<%= link_to "",deletep_path(:id => post.id),class:"fa fa-times btn btn-default" %>									
+
+
+									<%= link_to "",deletep_path(:id => post.id),class:"fa fa-times btn btn-default", method: :delete,data: { confirm: "You sure?" } %>
 									</a>
 								</td>
 							</tr>
-						<% end %>	
-							
+						<% end %>
+
 							</tbody>
 						</table>
-					
+
 				</div> <!-- /widget-content -->
-			
+
 			</div> <!-- /widget -->
             </div>

@@ -4,7 +4,7 @@
 <% @recentPosts.each do |recentPost| %>
 <div class="col-md-12 list_recent_post">
 
-  <div class="col-md-8 recent_post">
+  <div class="col-md-12 recent_post">
     <b><a href="" title=""><%= link_to recentPost.title, recentPost %></a></b>
     <p class="title-img"> <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
       <%= time_ago_in_words(recentPost.updated_at) %> ago.
@@ -13,7 +13,8 @@
       </a>
     </p>
     <p><%= recentPost.content[0..200] %>...
-    </p>
+    <hr style="border-color: #BEC0C2;">
+
   </div>
 </div>
 

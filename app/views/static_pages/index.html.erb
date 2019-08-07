@@ -3,6 +3,7 @@
 
 <div class="container" style="    background-color: #F0F0F0;">
     <img width="98%" src="https://scontent.fhan2-2.fna.fbcdn.net/v/t1.15752-9/67812344_1262697200558965_4992766621081665536_n.png?_nc_cat=111&_nc_oc=AQkgi5WqlXL6kHo740cm4cKyQ-3WGEpKTUnhiBvmV13mQYCVD2pssO8hkEPFJuMzyuU&_nc_ht=scontent.fhan2-2.fna&oh=af962d33c5d8a019f49306142fa7e493&oe=5DDF913E">
+    <hr style="border-color: #BEC0C2;">
     <div class="row">
 
 
@@ -26,6 +27,21 @@
                     </div>
 
                     <div class="col-md-12 fix-padding random_post_content">
+                        <h5><b class="bottom_b">SEARCH FOR JOBS</b></h5><br>
+                        <%= form_for searchpeople_path do %>
+                         <div class="input-group">
+
+                            <input type="text" class="form-control" name="title" placeholder="Job's title..."><br><br><br>
+                            <input type="text" class="form-control" name="money" placeholder="Money">
+                            <br><br><br>
+                            <input type="date" name="start_time"  style="height: 400px; width:118px;"> ~ <input type="date" name="end_time" style="height: 400px; width:120px;">
+                            <br>
+                            <button type="submit" class="btn btn-primary form-control">Search</button>
+                            <br><br><br><br>
+                        </div>
+                        <% end %>
+                    </div>
+                    <br><br>
                         <%= render "top_user" %>
                     </div>
                 </div>
