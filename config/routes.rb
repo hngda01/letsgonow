@@ -7,6 +7,7 @@ get '/admin/user', to: 'static_pages#adminuser', as: "adminuser"
 get '/index', to: 'static_pages#index'
 get "/about" => 'static_pages#about', as: 'about'
 get "/prs" => 'static_pages#prs', as: 'prs'
+get "/all_jobs" => 'static_pages#all_jobs', as: 'all_jobs'
 get "/accept_student" => 'static_pages#accept_student', as: 'accept_student'
 get "/cancel_student" => 'static_pages#cancel', as: 'cancel_student'
 get "/spp" => 'static_pages#spp', as: 'spp'

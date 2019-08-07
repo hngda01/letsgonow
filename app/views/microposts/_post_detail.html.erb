@@ -1,6 +1,6 @@
 
 <div id="edit-user" class="tab-pane active">
-  <div class="col-sm-9">  
+  <div class="col-sm-9">
     <div class="row">
       <div class=" well" style="margin-left: 20px; margin-right: 20px">
         <div align="left">
@@ -15,13 +15,13 @@
               </td>
               <td>
                 <span class="page-newsfeed-06">
-                  <a href="" title=""><%= link_to @micropost.user.name, @micropost.user %></a>                  
+                  <a href="" title=""><%= link_to @micropost.user.name, @micropost.user %></a>
                 </span>
-                <br> 
+                <br>
                 <div style="color: #000;">
                   <%= form_for [@micropost, @new_save_post], remote: true do |f| %>
                   <%= time_ago_in_words(@micropost.created_at) %> ago. &nbsp;&nbsp;&nbsp;
-                  <i class="fa fa-map-marker"></i>  
+                  <i class="fa fa-map-marker"></i>
                   <a class="tag badge badge-default overflow-hidden">
                     <%= @micropost.district.name %>
                   </a>
@@ -29,7 +29,7 @@
                   <% if current_user.id == @micropost.user_id %>
                   <%= link_to "Edit", edit_micropost_path(@micropost),class: "fa fa-pencil" %>
                   &nbsp;&nbsp;&nbsp;
-                  <%= link_to @micropost, method: :delete,data: { confirm: "You sure?" } do %>                  
+                  <%= link_to @micropost, method: :delete,data: { confirm: "You sure?" } do %>
                   <i class="fa fa-trash" >delete</i>
                   <% end %>
                   <% end %>
@@ -50,18 +50,18 @@
         </div>
         <hr />
         <h4 class="page-newsfeed-06"> <%= @micropost.title %></h4>
-        <p><%= @micropost.content %></p> 
-         
+        <p><%= @micropost.content %></p>
+
         <!-- form like -->
         <%= form_for [@micropost, @new_like], remote: true do |f| %>
         <% result= "#{@user.name} liked your post" %>
         <%= f.hidden_field :notification, value: result %>
         <%= f.hidden_field :user_id, value: @user.id %>
         <%= f.hidden_field :micropost_id, value: @micropost.id %>
-         
+
         <% end %>
         <hr>
-        
+
         <h3><a href="" title="">More detail</a></h3><br>
         <table>
           <tr>
@@ -90,15 +90,15 @@
             </tr>
           <% end %>
         </table>
-        
+
         <br>
         <!--  khu vuc comment -->
-        
+
         <% if @micropost.check_match(@micropost) %>
 
-          <div style="background-color: #f6f7f1; display:inline; ">  
+          <div style="background-color: #f6f7f1; display:inline; ">
         <% else %>
-          <div style="background-color: #f6f7f1; display:none; ">  
+          <div style="background-color: #f6f7f1; display:none; ">
         <% end %>
 
           <!-- comment list -->
@@ -116,7 +116,7 @@
           <!-- end comment list -->
           <div id="comment-form">
             <%= render 'comments/comment_form' %>
-          </div> <br><br><br> 
+          </div> <br><br><br>
         </div>
 
         <!-- ket thuc khu vuc comment -->
@@ -124,25 +124,26 @@
         <!--  khu vuc PR -->
         <hr>
           <% if @micropost.check_match(@micropost) or current_user.role == "company" %>
-            <div style="background-color: #f6f7f1; display:none; ">  
+            <div style="background-color: #f6f7f1; display:none; ">
           <% else %>
-            <div style="background-color: #f6f7f1; display:inline; ">  
-          <% end %> 
+            <div style="background-color: #f6f7f1; display:inline; ">
+          <% end %>
           <!-- comment list -->
           <br>
           <h3> 自己PR</h3>
           <br>
           <%= form_for [@micropost, @new_pr] do |f| %>
+          <%= f.hidden_field :owner_id, value:  @micropost.user.id %>
           <%= f.hidden_field :user_id, value: @user.id %>
           <%= f.hidden_field :micropost_id, value: @micropost.id %>
           <div id="comment-form">
           <%= f.text_area :pr, class: 'form-control', placeholder: "自己PRを入力してください", size: "24x6" %>
         </div>
-      
+
       <button type="submit" class="btn btn-primary">Submit</button>
           <% end %>
-          </div>  
-         
+          </div>
+
         <!-- ket thuc khu vuc PR -->
 
       </div>

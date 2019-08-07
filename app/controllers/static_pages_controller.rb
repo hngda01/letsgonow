@@ -8,6 +8,14 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def prs
+    @prs = JobPr.where(owner_id: current_user.id)
+  end
+
+  def all_jobs
+    @jobs = JobUser.where(owner_id: current_user.id)
+  end
+
   def admin
     if current_user.admin == false
       redirect_to not_allow_path
@@ -55,9 +63,18 @@ class StaticPagesController < ApplicationController
   end
 
   def accept_student
-    @pr = JobPr.where(micropost_id: params[:micropost_id], user_id: params[:user_id])
+    @pr = JobPr.where(micropost_id: params[:micropost_id], user_id: params[:user_id]).first
     @pr.destroy
-    JobUser.create(micropost_id: params[:micropost_id], user_id: params[:user_id])
+    @micropost = Micropost.find(params[:micropost_id])
+    JobUser.create(micropost_id: params[:micropost_id], user_id: params[:user_id], owner_id: @micropost.user.id)
+    flash[:success] = "accepted request!"
+    redirect_back(fallback_location: prs_path)
+  end
+
+  def cancel
+    @pr = JobPr.where(micropost_id: params[:micropost_id], user_id: params[:user_id]).first
+    @pr.destroy
+    flash[:success] = "canceled request!"
     redirect_back(fallback_location: prs_path)
   end
 

@@ -5,17 +5,21 @@
 
   <table class="w3-table w3-striped w3-border">
     <tr>
-      <th width="300px">Student name</th>
+      <th width="100px">Job ID</th>
+      <th width="200px">Student name</th>
       <th>PR</th>
       <th width="100px">Accept</th>
       <th width="100px">Cancel</th>
     </tr>
-    <tr>
-      <td>Jill</td>
-      <td>Smith</td>
-      <td><%= link_to "Accept", accept_student_path(micropost_id: 65, user_id: 2) %></td>
-      <td>Cancel</td>
-    </tr>
-
+    <% @prs.each do |pr| %>
+      <tr>
+        <% p = Micropost.find(pr.micropost_id) %>
+        <td><%= link_to pr.micropost_id, micropost_path(id: pr.micropost_id) %></td>
+        <td><%= pr.user.name %></td>
+        <td><%= pr.pr %></td>
+        <td><%= link_to "Accept", accept_student_path(micropost_id: pr.micropost_id, user_id: pr.user_id) %></td>
+        <td><%= link_to "Cancel", cancel_student_path(micropost_id: pr.micropost_id, user_id: pr.user_id), data: { confirm: "You sure?" } %></td>
+      </tr>
+    <% end %>
   </table>
 </div>

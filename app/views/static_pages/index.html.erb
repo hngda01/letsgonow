@@ -1,23 +1,19 @@
 
-<div class="container-fuild">
+<div class="container-fuild" style="    background-color: #F0F0F0;">
 
-<div class="container">
+<div class="container" style="    background-color: #F0F0F0;">
+    <img width="98%" src="https://scontent.fhan2-2.fna.fbcdn.net/v/t1.15752-9/67812344_1262697200558965_4992766621081665536_n.png?_nc_cat=111&_nc_oc=AQkgi5WqlXL6kHo740cm4cKyQ-3WGEpKTUnhiBvmV13mQYCVD2pssO8hkEPFJuMzyuU&_nc_ht=scontent.fhan2-2.fna&oh=af962d33c5d8a019f49306142fa7e493&oe=5DDF913E">
     <div class="row">
-        
-        <div class="col-md-12">
-            
-            <%= render 'slider_top' %>
-            
-        </div>
+
+
         <div class="col-md-12">
             <div class="col-md-9 fix-padding">
                 <div class="row">
                     <div class="col-md-12">
-                            <%= render 'most_view' %>
-                            <%= render 'address' %>
-                            
+
+
                             <div id="address-list">
-                                
+
                             </div>
                             <%= render 'recent' %>
                         </div>
@@ -26,27 +22,16 @@
                 <div class="col-md-3">
                     <br><br>
                     <div class="col-md-12 fix-padding">
-                    <%= form_for index_path do %>
-                        <div class="input-group">                            
-                            <input type="hidden" name="search_param" value="all" id="search_param">         
-                            <input type="text" class="form-control" name="search" placeholder="Search term...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit" style="height: 40px;"><span class="glyphicon glyphicon-search"></span></button>
-                            </span>                            
-                        </div>
-                    <% end %>
+
                     </div>
-                    <div class="col-md-12 facebook fix-padding">
-                        <h5><b class="bottom_b">FACEBOOK</b></h5>
-                        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs&width=255&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=334879800309797" width="255" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-                    </div>
+
                     <div class="col-md-12 fix-padding random_post_content">
-                        <%= render "top_user" %>    
+                        <%= render "top_user" %>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
 </div>
 

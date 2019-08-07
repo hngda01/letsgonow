@@ -1,10 +1,10 @@
 class JobPrsController < ApplicationController
   def create
     @micropost = Micropost.find(params[:micropost_id])
-    
-    #new comment 
+
+    #new comment
     #check to add notification
-    if current_user.id != params[:micropost_id]   
+    if current_user.id != params[:micropost_id]
     @notification = @micropost.notifications.build(params.require(:job_pr).permit(:notification,:user_id,:micropost_id)) # strong parameters
     @notification.user_id= @micropost.user_id
     @notification.save
@@ -28,10 +28,10 @@ class JobPrsController < ApplicationController
       end
       format.js # JavaScript response
     end
-  end  
+  end
   private
 
     def pr_params
-      params.require(:job_pr).permit(:pr,:user_id,:micropost_id)
+      params.require(:job_pr).permit(:pr,:user_id,:micropost_id, :owner_id)
     end
 end
