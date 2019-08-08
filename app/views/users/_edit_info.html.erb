@@ -60,14 +60,14 @@
                             <option value="<%= skill.name %>">
                             <% end %>
                         </datalist>
-                        <%= skill_form.number_field :years,placeholder:"年数"%>
+                        <%= skill_form.number_field :years,placeholder:"Years"%>
                         <br>
-                        <%= skill_form.link_to_remove "削除" %>
+                        <%= skill_form.link_to_remove "Delete" %>
                         <br>
                     
                 <% end %>
                 </div>
-                <%= f.link_to_add "スキルを追加", :user_skills %>
+                <%= f.link_to_add "Add Skill", :user_skills %>
         </div>
 
 
