@@ -7,11 +7,7 @@
           <table>
             <tr>
               <td style="padding-right: 20px">
-              <% if @micropost.user.picture? %>
-                <%= image_tag @micropost.user.picture.url ,class: "img-circle", height:"55", width:"55" if @micropost.user.picture?%>
-              <% else %>
-                <img src="/uploads/s2.jpg" class= "img-circle", height="55", width="55">
-              <% end %>
+                <%= image_tag "https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1&fbclid=IwAR2Z2qe3svRmwJy0s9kxqW6QQ52sOETMn-a4IIqQCx1oWtXUuk5KidPbTQM" ,class: "img-circle", height:"55", width:"55" %>
               </td>
               <td>
                 <span class="page-newsfeed-06">
