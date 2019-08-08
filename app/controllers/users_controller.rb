@@ -12,8 +12,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @notifications= current_user.notifications
-    @microposts = Micropost.where(["id IN (SELECT micropost_id FROM job_users WHERE user_id = ?) and end_time > ?",current_user.id, Time.zone.now]).paginate(page: params[:page],per_page: 5)
-    @savedMicroposts = Micropost.where(["id IN (SELECT micropost_id FROM job_users WHERE user_id = ?) and end_time <= ?",current_user.id, Time.zone.now]).paginate(page: params[:page],per_page: 5)
+    @microposts = Micropost.where(["id IN (SELECT micropost_id FROM job_users WHERE user_id = ?) and end_time > ?",@user.id, Time.zone.now]).paginate(page: params[:page],per_page: 5)
+    @savedMicroposts = Micropost.where(["id IN (SELECT micropost_id FROM job_users WHERE user_id = ?) and end_time <= ?",@user.id, Time.zone.now]).paginate(page: params[:page],per_page: 5)
   end
 
   def new
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "Welcome to Viet Travel!"
+      flash[:success] = "Welcome to　フォーゴン!"
       redirect_to @user
     else
       flash[:danger] = "please fill in all input fields!"

@@ -14,6 +14,7 @@ class StaticPagesController < ApplicationController
 
   def all_jobs
     @jobs = JobUser.where(owner_id: current_user.id)
+    @unmatched_job = Micropost.where(" id NOT IN (SELECT micropost_id FROM job_users) and user_id = ? ", current_user.id)
   end
 
   def admin
@@ -107,7 +108,7 @@ class StaticPagesController < ApplicationController
     end
     @posts= Like.group('micropost_id').order('count(id) desc').limit(5)
     @addresses= District.all
-    @recentPosts= Micropost.where("accept = ?", true).order("updated_at DESC").paginate(page: params[:page], per_page: 5)
+    @recentPosts= Micropost.order("updated_at DESC").paginate(page: params[:page], per_page: 5)
     @topUsers= User.joins(:microposts).group('users.id').order('count(microposts.id) desc').limit(10)
   end
 end
