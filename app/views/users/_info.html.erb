@@ -1,13 +1,13 @@
 <div  id="photos-tab" class="tab-pane">
     <div class="pd-20">   
         <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="icon-user mgr-10 profile-icon"></i> 
-            個人情報</h3>
+            Personal Information</h3>
             <div class="row">
                 <div class="col-md-12 about2">
                     
                     <div class="col-sm-12 padding-user">
                         <div class="row mgbt-xs-0">
-                            <label class="col-xs-5 control-label">Full name:</label>
+                            <label class="col-xs-5 control-label"><% if current_user.role == "company" %>Company Name:<% else %>Student Name:<% end %></label>
                             <div class="col-xs-7 controls"><%= @user.name %></div>
                         </div>
                     </div>
@@ -23,22 +23,23 @@
                             <div class="col-xs-7 controls"><%= @user.address %></div>
                         </div>
                     </div>
+                    <% if current_user.role == "student"%>
                     <div class="col-sm-12 padding-user">
                         <div class="row mgbt-xs-0">
-                            <label class="col-xs-5 control-label">年齢:</label>
+                            <label class="col-xs-5 control-label">Age:</label>
                             <div class="col-xs-7 controls"><%= @user.hobby %></div>
                         </div>
                     </div>
                     
                     <div class="col-sm-12 padding-user">
                         <div class="row mgbt-xs-0">
-                            <label class="col-xs-5 control-label">学校名:</label>
+                            <label class="col-xs-5 control-label">Student Name:</label>
                             <div class="col-xs-7 controls"><%= @user.phone_number %></div>
                         </div>
                     </div>
                     <div class="col-sm-12 padding-user">
                     <div class="row mgbt-xs-0">
-                        <label class="col-xs-5 control-label">スキル:</label>
+                        <label class="col-xs-5 control-label">Skill:</label>
                         <div class="col-xs-7 controls">
                         <table>
                         <% @user.user_skills.each do |skill| %>
@@ -54,11 +55,9 @@
                         </table>
                         </div>
                         </div>
-                        
-                            
-                        
-                    
+ 
                 </div>
+                <% end %>
                 </div>
             </div>
 

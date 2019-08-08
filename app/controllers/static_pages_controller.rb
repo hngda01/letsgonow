@@ -21,7 +21,7 @@ class StaticPagesController < ApplicationController
       redirect_to not_allow_path
     end
     @notifications= current_user.notifications
-    @waitingPost = Micropost.where("accept = ?", false)
+    @waitingPost = Micropost.paginate(page: params[:page],per_page: 10)
     #@waitingPost = Micropost.paginate(page: params[:page])
   end
   def slider
@@ -37,7 +37,7 @@ class StaticPagesController < ApplicationController
     if current_user.admin == false
       redirect_to not_allow_path
     end
-    @static_pages = User.paginate(page: params[:page])
+    @static_pages = User.paginate(page: params[:page],per_page: 10)
     @notifications= current_user.notifications
     @waitingPost = Micropost.where("accept = ?", false)
     #@waitingPost = Micropost.paginate(page: params[:page])
@@ -91,12 +91,15 @@ class StaticPagesController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
   def searchp
-    redirect_to searchpeople_path(:id => params[:search])
+    redirect_to searchpeople_path(:title => params[:title], money: params[:money], start_time: params[:start_time], end_time: params[:end_time])
   end
   def searchpeople
     @notifications= current_user.notifications
-    wildcard_search = params[:id]
-    @recentPosts= Micropost.where("title like ? and accept = ?","%#{wildcard_search}%",true).paginate(page: params[:page],per_page: 5)
+    title = params[:title]
+    money = params[:money]
+    start_time = params[:start_time]
+    end_time = params[:end_time]
+    @recentPosts= Micropost.where("title like ? and money >= ? and start_time >= ? and end_time <= ?","%#{title}%",money, start_time, end_time).paginate(page: params[:page],per_page: 5)
   end
   def index
     if logged_in?
