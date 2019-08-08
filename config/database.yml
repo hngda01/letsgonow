@@ -1,20 +1,18 @@
 default: &default
-  adapter: mysql2
+  adapter: postgresql
+  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
-  database: <%= ENV["DATABASE_NAME"] %>
-  username: <%= ENV["DATABASE_USER"] %>
-  password: <%= ENV["DATABASE_PASSWORD"] %>
 
 development:
   <<: *default
+  database: myapp_development
 
 test:
   <<: *default
-  database: <%= ENV["DATABASE_NAME_TEST"] %>
-
-staging:
-  <<: *default
+  database: myapp_test
 
 production:
   <<: *default
+  database: myapp_production
+  username: myapp
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %
