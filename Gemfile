@@ -8,6 +8,7 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
+gem  'pg'
 gem 'bootstrap-sass', '3.3.7'
 gem 'bcrypt',         '3.1.11'
 gem "nested_form"
@@ -54,7 +55,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "capybara", "~> 2.13"
-    gem "rubocop", "~> 0.54.0", require: false
+  gem "sqlite3"
+  gem "rubocop", "~> 0.54.0", require: false
   gem "selenium-webdriver"
 end
 
