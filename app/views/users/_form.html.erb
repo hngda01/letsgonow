@@ -14,7 +14,7 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation, class: 'form-control' %>
   <div class="form-group" id="f1">
-                <label for="exampleInputPassword1">スキル</label>
+                <label for="exampleInputPassword1">Skill</label>
                 <%= f.fields_for :user_skills do |skill_form| %>
                   <%= skill_form.text_field :name,placeholder:"俳優名" %>
                   <%= skill_form.text_field :role,placeholder:"ロール"%>

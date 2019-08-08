@@ -1,9 +1,5 @@
 <li>
-  <% if user.picture? %>
-  <%= image_tag user.picture.url, size: 50 %>
-  <% else %>
-  <img src="images/s2.jpg", height="50", width="50">
-  <% end %>
+  <%= image_tag "https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1&fbclid=IwAR2Z2qe3svRmwJy0s9kxqW6QQ52sOETMn-a4IIqQCx1oWtXUuk5KidPbTQM", size: 50 %>
   <%= link_to user.name, user %>
   
 </li>
