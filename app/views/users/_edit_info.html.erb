@@ -6,11 +6,11 @@
             <i class="fa fa-coffee"></i>
             Edit Profile
         </div>
-        <h3>Personal info</h3>
+        <h3>Information</h3>
         <%= nested_form_for(@user, :html => {:class => 'form-horizontal form-edit'}) do |f| %>
         <!-- <form class="form-horizontal form-edit" role="form"> -->
         <div class="form-group">
-            <label class="col-lg-3 control-label">Full name:</label>
+            <label class="col-lg-3 control-label"><% if current_user.role == "company" %>Company Name:<% else %>Student Name:<% end %></label>
             <div class="col-lg-8">
                 <%= f.text_field :name, class: 'form-control' %>
 
@@ -30,44 +30,44 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-lg-3 control-label">年齢:</label>
+            <label class="col-lg-3 control-label">Age:</label>
             <div class="col-lg-8">
                 <%= f.text_field :hobby, class: 'form-control' %>
             </div>
         </div>
         
         <div class="form-group">
-            <label class="col-lg-3 control-label">学校名:</label>
+            <label class="col-lg-3 control-label">School Name:</label>
             <div class="col-lg-8">
                 <%= f.text_field :phone_number, class: 'form-control' %>
             </div>
         </div>
-        <div class="form-group">
+      <!--  <div class="form-group">
             <label class="col-lg-3 control-label">Avatar:</label>
             <div class="col-lg-8">
                 <%= f.file_field :picture %>
             </div>
-        </div>
+        </div>      -->
 
         <div class="form-group" id="f1">
             <%= f.fields_for :user_skills do |skill_form| %>
-                <label class="col-lg-3 control-label">スキル:</label>                
+                <label class="col-lg-3 control-label">Skill:</label>                
                     <div class="col-lg-8">
                     
-                        <%= skill_form.text_field :skill,placeholder:"スキル", list:"browsers" %>
+                        <%= skill_form.text_field :skill,placeholder:"Skill", list:"browsers" %>
                         <datalist id="browsers">
                             <% @skills.each do |skill| %> 
                             <option value="<%= skill.name %>">
                             <% end %>
                         </datalist>
-                        <%= skill_form.number_field :years,placeholder:"年数"%>
+                        <%= skill_form.number_field :years,placeholder:"Years"%>
                         <br>
-                        <%= skill_form.link_to_remove "削除" %>
+                        <%= skill_form.link_to_remove "Delete" %>
                         <br>
                     
                 <% end %>
                 </div>
-                <%= f.link_to_add "スキルを追加", :user_skills %>
+                <%= f.link_to_add "Add Skill", :user_skills %>
         </div>
 
 

@@ -24,13 +24,19 @@
           </div>
         </div>
       </div>
-      
-      
+      <div class="form-group">
+        <% @districts = Role.all %>
+        <%= f.select :role, @districts.map{ |c| [c.name] },
+            {include_blank: t(".choose_role")},
+            {class: "form-control"} %>
+      </div>
+
+
       <hr class="colorgraph">
       <div class="row">
       <center>
         <div style="width: 200px;"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
-      </center>  
+      </center>
       </div>
      <% end %>
   </div>
