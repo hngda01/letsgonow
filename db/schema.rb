@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20190807034459) do
   end
 
   create_table "job_skills", force: :cascade do |t|
-    t.text "skill"
+    t.string "skill"
     t.integer "micropost_id"
   end
 
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 20190807034459) do
 
   create_table "user_skills", force: :cascade do |t|
     t.integer "user_id"
-    t.text "skill"
+    t.string "skill"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "years"

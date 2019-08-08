@@ -65,27 +65,27 @@
         <h3><a href="" title="">More detail</a></h3><br>
         <table>
           <tr>
-            <td width="70%"><b>開始時間</b></td>
+            <td width="70%"><b>Start Time</b></td>
             <td><%= @micropost.start_time %></td>
           </tr>
           <tr>
-            <td width="70%"><b>終了時間</b></td>
+            <td width="70%"><b>End Time</b></td>
             <td><%= @micropost.end_time %></td>
           </tr>
           <tr>
-            <td width="70%"><b>報酬</b></td>
-            <td><%= @micropost.money %></td>
+            <td width="70%"><b>Money</b></td>
+            <td><%= @micropost.money %>$</td>
           </tr>
           <tr>
-            <td width="70%"><b>場所</b></td>
+            <td width="70%"><b>City</b></td>
             <td><%= @micropost.district.name %></td>
           </tr>
           <tr>
-            <td > <b>必要なスキル</b> </td>
+            <td > <b>Required Skill</b> </td>
           <tr>
           <% @skills.each do |skill| %>
             <tr>
-              <td width="70%"><b>スキル名</b></td>
+              <td width="70%"><b></b></td>
               <td><%= skill.skill %></td>
             </tr>
           <% end %>
@@ -119,25 +119,36 @@
           </div> <br><br><br>
         </div>
 
-        <!-- ket thuc khu vuc comment -->
+        <!--  Neu da viet PR thi hien ra -->
+        <% self_pr = JobPr.find_by(micropost_id: @micropost.id, user_id: @user.id) %>
+        <% if(self_pr) %> <!-- neu user da viet pr -->
+          <hr>
+          <div>
+            <tr>
+              <td width="70%"><b>Self PR: </b></td>
+              <td><%= self_pr.pr %></td>
+            </tr>
+          </div>
+        <% end %>
+        
 
         <!--  khu vuc PR -->
         <hr>
-          <% if @micropost.check_match(@micropost) or current_user.role == "company" %>
+          <% if @micropost.check_match(@micropost) or current_user.role == "company" or self_pr or current_user.id == @micropost.user_id%>
             <div style="background-color: #f6f7f1; display:none; ">
           <% else %>
             <div style="background-color: #f6f7f1; display:inline; ">
           <% end %>
           <!-- comment list -->
           <br>
-          <h3> 自己PR</h3>
+          <h3> Self PR</h3>
           <br>
           <%= form_for [@micropost, @new_pr] do |f| %>
           <%= f.hidden_field :owner_id, value:  @micropost.user.id %>
           <%= f.hidden_field :user_id, value: @user.id %>
           <%= f.hidden_field :micropost_id, value: @micropost.id %>
           <div id="comment-form">
-          <%= f.text_area :pr, class: 'form-control', placeholder: "自己PRを入力してください", size: "24x6" %>
+          <%= f.text_area :pr, class: 'form-control', placeholder: "Let's see what you have :D", size: "24x6" %>
         </div>
 
       <button type="submit" class="btn btn-primary">Submit</button>
