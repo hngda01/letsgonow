@@ -12,8 +12,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @notifications= current_user.notifications
-    @microposts = @user.microposts.where("accept = ?", true).paginate(page: params[:page],per_page: 5)
-    @savedMicroposts = SavePost.where("user_id = ? ", params[:id])
+    @microposts = Micropost.where(["id IN (SELECT micropost_id FROM job_users WHERE user_id = ?) and end_time > ?",current_user.id, Time.zone.now]).paginate(page: params[:page],per_page: 5)
+    @savedMicroposts = Micropost.where(["id IN (SELECT micropost_id FROM job_users WHERE user_id = ?) and end_time <= ?",current_user.id, Time.zone.now]).paginate(page: params[:page],per_page: 5)
   end
 
   def new
