@@ -1,0 +1,37 @@
+<% i= @posts[0] %>
+<h5><b class="bottom_b">Hot Posts</b></h5>
+<div class="col-md-5 thumbs-fix">
+  <a href="#" class="thumbnail">
+    <%= image_tag i.micropost.picture.url, class: "image-thumb" %>
+  </a>
+  <a href="" title="">
+    <h4 class="title-img"><%= link_to i.micropost.title, i.micropost %></h4>
+  </a>
+  <p class="title-img"> <i class="fa fa-calendar-times-o" aria-hidden="true"></i> 
+    <%= time_ago_in_words(i.micropost.updated_at) %> ago.
+    <a class="tag badge badge-default overflow-hidden">
+    <%= i.micropost.district.name %>
+    </a>
+  </p>
+</div>
+<div class="col-md-7">
+  <% @posts.each do |post| %>
+  <% if post.eql? i  then %>
+  <% next %>
+  <% end %>
+  <div class="col-md-12 boder-list-img">
+    <div class="col-md-3">
+      <%= image_tag post.micropost.picture.url, class: "fix-list-width" %>
+    </div>
+    <div class="col-md-9">
+      <a href="" title=""><h6><b><%= link_to post.micropost.title, post.micropost %></b></h6></a>
+      <p > <i class="fa fa-calendar-times-o" aria-hidden="true"></i> 
+        <%= time_ago_in_words(post.micropost.updated_at) %> ago. 
+        <a class="tag badge badge-default overflow-hidden">
+          <%= post.micropost.district.name %>
+        </a>
+      </p>
+    </div>
+  </div>
+  <% end %>  
+</div>

@@ -1,0 +1,23 @@
+<div  id="saved-tab" class="tab-pane">
+<h5><b class="bottom_b">Saved posts</b></h5>
+<% @savedMicroposts.each do |post| %>
+<div class="col-md-12 list_recent_post">
+  <div class="col-md-4 recent_img">
+    <img src="<%= post.micropost.picture.url %>" alt="">
+  </div>
+  <div class="col-md-8 recent_post">
+    <b><a href="" title=""><%= link_to post.micropost.title, post.micropost %></a></b>
+    <p class="title-img"> <i class="fa fa-calendar-times-o" aria-hidden="true"></i> </a>
+    <%= " "%>
+    <%= time_ago_in_words(post.micropost.created_at) %> ago.</p>
+    <p>
+    <%= post.micropost.content[0..200] %>
+    <% if post.micropost.content.length >200 then %>
+    ...
+    <% end %>
+    
+    </p>
+  </div>
+</div>
+<% end %>
+</div>

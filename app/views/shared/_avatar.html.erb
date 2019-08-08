@@ -1,0 +1,37 @@
+<div class="col-sm-3">
+    <div class="panel widget light-widget panel-bd-top">
+        <div class="well">
+        <div class="text-center vd_info-parent">                 
+                <% if @user.picture? %>
+                <%= image_tag @user.picture.url ,class: "avatar" if @user.picture?%>
+                <% else %>
+                <img src="/uploads/s2.jpg" class="avatar">
+                <% end %>
+            </div>
+            <div class="row">
+            </div>
+            <h2 class="font-semibold mgbt-xs-5"><%= link_to @user.name, current_user %></h2>
+            <div class="mgtp-20">
+                <% if (@user.id == current_user.id) %>
+                
+                <table class="table table-striped table-hover" >
+                    <tbody >                        
+                            <tr>
+                            <td align="center">
+                                <i class="fa fa-pencil-square-o" style="color: #1866b1;"></i>
+                                <%= link_to "Edit profile", edit_user_path(current_user) %> </td>
+                            </tr>
+                            <% if (current_user.role == "company") %>
+                                <tr>
+                                    <td align="center">
+                                        <i class="fa fa-file" style="color: #1866b1;"></i>
+                                        <%= link_to "Write post..", new_micropost_path %> </td>
+                                </tr>
+                            <% end %>
+                    </tbody>
+                </table>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

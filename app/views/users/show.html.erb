@@ -1,11 +1,41 @@
-<% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
+<body style="background: url(images/background/8.jpg)">
+    <div class="container-fuild">
+        
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3 header-inner">
+                    <a href="#"><img src="images/logo.png" alt=""></a>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row profile">
+                    <%= render 'shared/avatar' %>
+                    <div class="col-sm-9">
+                        <div class="tabs widget">
+                        <%= render 'tab_name_show' %>
+                            <div class="tab-content">
+
+                                <%= render 'info' %>
+
+                                <%= render 'created_article' %>
+                                 
+                                <%= render 'saved_post' %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+
+</body> 

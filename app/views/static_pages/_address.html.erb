@@ -1,0 +1,58 @@
+
+<div class="container">
+
+  <div class='row'>
+    <div class='col-md-9'>
+      <div class="carousel slide media-carousel" id="media">
+        <div class="carousel-inner">
+        <% len = @addresses.length %>
+        <% i=0 %>
+        <% while (i < len) %>
+          <% if i==0 then %>
+          <div class="item  active">
+          <% else %>
+          <div class="item">
+          <% end %>
+            <div class="row">
+              <div class="col-md-4">
+                <%= link_to about_path(:id => @addresses[i].id),class:"thumbnail", remote:true do %>
+                <img alt="" src="images/<%= @addresses[i].picture %>">
+                  <center><%= @addresses[i].name %> </center>
+                <% end %>
+                 
+              </div>          
+              <div class="col-md-4">
+                <%= link_to about_path(:id => @addresses[i+1].id),class:"thumbnail", remote:true do %>
+                <img alt="" src="images/<%= @addresses[i+1].picture %>">
+                  <center><%= @addresses[i+1].name %> </center>
+                <% end %>
+                
+              </div>
+              <div class="col-md-4">
+                <%= link_to about_path(:id => @addresses[i+2].id),class:"thumbnail", remote:true do %>
+                <img alt="" src="images/<%= @addresses[i+2].picture %>">
+                  <center><%= @addresses[i+2].name %> </center>
+                <% end %>
+                
+              </div>        
+            </div>
+          </div>
+          <% i+=3 %>
+        <% end %>
+          
+          
+        </div>
+        <a data-slide="prev" href="#media" class="left carousel-control">‹</a>
+        <a data-slide="next" href="#media" class="right carousel-control">›</a>
+      </div>                          
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+    $('#media').carousel({
+      pause: true,
+      interval: false,
+    });
+  });
+</script>

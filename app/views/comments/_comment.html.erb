@@ -1,0 +1,35 @@
+<% len = comments.length %>
+<% i=0 %>
+<table style="width: 100%;">
+<% comments.each do |comment| %>
+  <% if i< (len -1) then %>
+      
+        <tr>
+          <td style="padding-right: 20px" width="100">
+            <%= image_tag comment.user.picture.url ,class: "img-circle", height:"55", width:"55" if comment.user.picture?%>
+          </td>
+          <td align="left">
+            <span class="page-newsfeed-06">
+              <%= comment.user.name %>
+            </span>
+            <span class="font-custom-01">
+              <br>
+              <%= time_ago_in_words(comment.created_at) %> ago.
+              &nbsp;&nbsp;
+              <% if current_user.id == comment.user_id %>
+              <button name="comment_id" value="<%= comment.id %>" type="submit" class="fa fa-trash">&nbsp;&nbsp;delete</button>
+              <% end %>
+            </span>               
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td align="left">
+            <%= comment.comment %>
+          </td>
+        </tr>
+      
+      <% i+=1 %>
+  <% end %>
+  <%end%>
+  </table><br>

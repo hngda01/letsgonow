@@ -1,0 +1,21 @@
+<h5><b class="bottom_b">TOP USERS</b></h5>
+  <% @topUsers.each do |user| %>
+  <div class="col-md-12 footer-fix fix-padding">
+  <div class="col-md-3 footer_img fix-padding">
+    <a href="" title="">
+      <% if user.picture? %>
+      <%= image_tag user.picture.url, style:"border-radius:50%;width: 75px; height: 75px " %>
+      <% else %>
+      <img src="images/s1.jpg" style="border-radius:50%;width: 75px; height: 75px "  alt="">
+      <% end %>
+      </a>
+    </div>
+    <div class="col-md-9 footer_post fix-padding">
+      <h6><b><%= link_to  user.name,user %></b></h6>
+      <p class="title-img"> <i class="fa fa-calendar-times-o" aria-hidden="true"></i> 
+      <%= time_ago_in_words(user.created_at) %>
+      </p>
+    </div>
+  </div>
+  <% end %>
+  

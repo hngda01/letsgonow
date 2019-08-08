@@ -1,0 +1,25 @@
+<center><h5><b class="bottom_b">
+  <i class="fa fa-map-marker"> </i>
+  <%= @recentPosts[0].district.name%></b></h5></center>
+  <% @recentPosts.each do |recentPost| %>
+  <div class="col-md-12 list_recent_post">
+    <div class="col-md-4 recent_img">
+      <% if recentPost.picture? %>    
+      <%= image_tag recentPost.picture.url %>
+      <% else %>
+      <img src="images/s1.jpg" alt="">
+      <% end %>
+    </div>
+    <div class="col-md-8 recent_post">
+      <b><a href="" title=""><%= link_to recentPost.title,recentPost %></a></b>
+      <p class="title-img"> <i class="fa fa-calendar-times-o" aria-hidden="true"></i> 
+        <%= time_ago_in_words(recentPost.updated_at) %> ago.
+        <a class="tag badge badge-default overflow-hidden">
+          <%= recentPost.district.name %>
+        </a>
+      </p>
+      <p><%= recentPost.content[0..200] %> ...
+      </p>
+    </div>
+  </div>
+  <% end %>

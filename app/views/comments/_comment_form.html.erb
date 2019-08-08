@@ -1,0 +1,25 @@
+
+<%= form_for [@micropost, @new_comment], remote: true do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+	<% result= "#{@user.name} commented on your post" %>
+    <%= f.hidden_field :notification, value: result %>
+<table style="width: 100%;" >
+	<tr >
+		<td style="padding-right: 20px" width="100" >
+			<%= image_tag @user.picture.url ,class: "img-circle", height:"55", width:"55" if current_user.picture?%>
+		</td>
+		<td align="left">
+			<a href="profile/{{Auth::user()->id}} title="" class="page-newsfeed-06">
+				<%= @user.name %>
+			</a>  
+			<%= f.hidden_field :user_id, value: current_user.id %>
+			<%= f.hidden_field :micropost_id, value: @micropost.id %>
+
+			<%= f.text_field :comment,id:"comment_box", class: 'form-control',placeholder: "comment",style: "width: 100%" %>                    
+		</td>
+
+	</tr>
+
+</table>
+<br>
+<% end %>

@@ -1,0 +1,84 @@
+
+<div id="edit-user" class="tab-pane active">
+    <div class="col-md-12 personal-info">
+        <div class="alert alert-info alert-dismissable">
+            <a class="panel-close close" data-dismiss="alert">×</a> 
+            <i class="fa fa-coffee"></i>
+            Edit Profile
+        </div>
+        <h3>Personal info</h3>
+        <%= nested_form_for(@user, :html => {:class => 'form-horizontal form-edit'}) do |f| %>
+        <!-- <form class="form-horizontal form-edit" role="form"> -->
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Full name:</label>
+            <div class="col-lg-8">
+                <%= f.text_field :name, class: 'form-control' %>
+
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Email:</label>
+            <div class="col-lg-8">
+                <%= f.text_field :email, class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Address:</label>
+            <div class="col-lg-8">
+                <%= f.text_field :address, class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">年齢:</label>
+            <div class="col-lg-8">
+                <%= f.text_field :hobby, class: 'form-control' %>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-lg-3 control-label">学校名:</label>
+            <div class="col-lg-8">
+                <%= f.text_field :phone_number, class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Avatar:</label>
+            <div class="col-lg-8">
+                <%= f.file_field :picture %>
+            </div>
+        </div>
+
+        <div class="form-group" id="f1">
+            <%= f.fields_for :user_skills do |skill_form| %>
+                <label class="col-lg-3 control-label">スキル:</label>                
+                    <div class="col-lg-8">
+                    
+                        <%= skill_form.text_field :skill,placeholder:"スキル", list:"browsers" %>
+                        <datalist id="browsers">
+                            <% @skills.each do |skill| %> 
+                            <option value="<%= skill.name %>">
+                            <% end %>
+                        </datalist>
+                        <%= skill_form.number_field :years,placeholder:"年数"%>
+                        <br>
+                        <%= skill_form.link_to_remove "削除" %>
+                        <br>
+                    
+                <% end %>
+                </div>
+                <%= f.link_to_add "スキルを追加", :user_skills %>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+                <%= f.submit yield(:button_text), class: "btn btn-primary" %>                    
+            </div>
+        </div>
+        <!-- </form> -->
+        <% end %>
+        
+    </div>
+</div>

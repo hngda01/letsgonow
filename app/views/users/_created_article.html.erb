@@ -1,0 +1,24 @@
+<div id="profile-tab" class="tab-pane active">
+<h5><b class="bottom_b">RECENT POST</b></h5>
+<% @microposts.each do |recentPost| %>
+<div class="col-md-12 list_recent_post">
+  <div class="col-md-4 recent_img">
+    <img src="<%= recentPost.picture.url %>" alt="">
+  </div>
+  <div class="col-md-8 recent_post">
+    <b><a href="" title=""><%= link_to recentPost.title, recentPost %></a></b>
+    <p class="title-img"> <i class="fa fa-calendar-times-o" aria-hidden="true"></i> </a>
+    <%= " "%>
+    <%= time_ago_in_words(recentPost.created_at) %> ago.</p>
+    <p>
+    <%= recentPost.content[0..200] %>
+    <% if recentPost.content.length >200 then %>
+    ...
+    <% end %>
+    
+    </p>
+  </div>
+</div>
+<% end %>
+<%= will_paginate @microposts %>
+</div>

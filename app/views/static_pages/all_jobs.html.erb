@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="w3-container">
+  <h2>Border Around Table</h2>
+  <p>The w3-border class adds a border around the table.</p>
+
+  <table class="w3-table w3-striped w3-border">
+    <tr>
+      <th width="100px">Job ID</th>
+      <th width="100px">Job title</th>
+      <th width="100px">Student in charge</th>
+      <th width="200px">Start time</th>
+      <th width="200px">End time</th>
+    </tr>
+    <% @jobs.each do |pr| %>
+      <tr>
+        <% p = Micropost.find(pr.micropost_id) %>
+        <% u = User.find(pr.user_id) %>
+        <td><%= link_to pr.micropost_id, micropost_path(id: pr.micropost_id) %></td>
+        <td><%= p.title %></td>
+        <td><%= link_to u.name, u%></td>
+        <td><%= p.start_time %></td>
+        <td><%= p.end_time %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

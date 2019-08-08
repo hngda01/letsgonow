@@ -1,0 +1,154 @@
+/*Contact sectiom*/
+.content-header{
+    font-family: 'Oleo Script', cursive;
+    color:#fcc500;
+    font-size: 45px;
+}
+
+.section-content{
+    text-align: center; 
+
+}
+#contact{
+    font-family: 'Teko', sans-serif;
+    padding-top: 60px;
+    width: 100%;
+    height: 700px;
+    background: #487c76; /* fallback for old browsers */
+    color : #fff;    
+}
+.contact-section{
+    padding-top: 40px;
+}
+.contact-section .col-md-6{
+    width: 50%;
+}
+
+.form-line{
+    border-right: 1px solid #B29999;
+}
+
+.form-group{
+    margin-top: 10px;
+}
+label{
+    font-size: 1.3em;
+    line-height: 1em;
+    font-weight: normal;
+}
+.form-control{
+    font-size: 1.3em;
+    color: #080808;
+}
+textarea.form-control {
+    height: 135px;
+    /* margin-top: px;*/
+}
+
+.submit{
+    font-size: 1.1em;
+    float: right;
+    width: 150px;
+    background-color: transparent;
+    color: #fff;
+
+}
+
+.fix-control {
+    background: none;
+    border: none;
+    border-bottom: 1px dashed #f80505;  
+}
+
+.box-new {
+    box-shadow: 2px 5px 5px -1px #030303;
+}
+
+#clock{
+    background-image:url('');
+    background-size:cover;
+    background-position: center;
+    height: 300px;
+    border: 1px solid #fff;
+}
+
+.checkbox-inline {
+    width: 118px;
+    margin-left: 10px;
+}
+
+.title-new {
+    font-family: initial;
+    text-shadow: 4px 4px 7px #333;
+    padding-left: 11px
+}
+
+.edit-profile {
+    border: 1px solid #dfdfdf;
+    margin: 10px 0px;
+    padding: 10px 0px;
+    box-shadow: 0px 3px 7px -1px #878383;
+}
+
+.profile {
+    margin: 10px 0px;
+    padding: 10px 0px;
+    border: 1px solid #e7e7e7;
+    background: ghostwhite;
+    font-family: initial;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.control-label ,.panel-body,.controls {
+    font-family: initial;
+}
+
+.personal-info {
+    margin:10px 0px;
+    font-family: initial;
+}
+
+.form-edit {
+    padding: 10px 0px;
+    border: 1px solid #f0f0f0;
+    box-shadow: 1px 1px 2px 0px #333;
+}
+
+.panel-body {
+    background: darkturquoise;
+}
+
+.about {
+    padding: 10px 0px;
+    background: aqua;
+    width: 824px;
+    box-shadow: 0px 5px 5px 0px #333;
+    margin: 21px 15px;
+    padding: 34px;
+}
+
+.back-ground {
+    background: url(images/background/8.jpg);
+}
+
+.tab-content-baiviet {
+    margin: 49px 0px;
+}
+
+.create-description {
+    height: 538px !important;
+}
+
+.padding-user {
+    padding:5px;
+}
+.well{
+        background-color: #FFF;
+        border: 1px solid #FFF;
+        padding: 0px;
+}

@@ -1,4 +1,5 @@
-<%= form_for(@user) do |f| %>
+<%= nested_form_for @user do |f| %>
+  hehe
   <%= render 'shared/error_messages', object: @user %>
 
   <%= f.label :name %>
@@ -12,6 +13,16 @@
 
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation, class: 'form-control' %>
+  <div class="form-group" id="f1">
+                <label for="exampleInputPassword1">スキル</label>
+                <%= f.fields_for :user_skills do |skill_form| %>
+                  <%= skill_form.text_field :name,placeholder:"俳優名" %>
+                  <%= skill_form.text_field :role,placeholder:"ロール"%>
+                  <br>
+                  <%= skill_form.link_to_remove "削除" %>
+                <% end %>
+                <p><%= f.link_to_add "キャストを追加", :characters %></p>
+              </div>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
